@@ -57,6 +57,8 @@ def update_name(new_name):
 
 
 def update_last_seen(last_seen_date):
+
+    
     con = create_connection()
     cur = con.cursor()
     #insert into tablename values('question', 'answert')
@@ -72,5 +74,5 @@ def get_last_seen():
     cur.execute(query)
     return str(cur.fetchall()[0][0])
 
-update_last_seen("324324")
+
 
