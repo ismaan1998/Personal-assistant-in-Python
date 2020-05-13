@@ -4,13 +4,11 @@ from input_module import take_input
 from database import *
 from internet import check_internet_connection, check_on_wikipedia
 import assistant_details
+from web_jobs import open_facebook, open_google, close_browser
 
 def process(query):
 
     answer = get_answer_from_memory(query)
-
-    
-    
 
     if answer == "get time details":
         return ("Time is " + get_time())
@@ -30,6 +28,18 @@ def process(query):
     elif answer == "off speak":
         return turn_off_speech()
 
+    elif answer == "close browser":
+        close_browser()
+        return "closing browser"
+        
+
+    elif answer == "open facebook":
+        open_facebook()
+        return "opening facebook"
+
+    elif answer == "open google":
+        open_google()
+        return "opening google"
         
     elif answer == 'change name':
         output("Okay! what do you want to call me")
