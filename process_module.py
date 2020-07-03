@@ -36,11 +36,7 @@ def process(query):
     elif answer == "off speak":
         return turn_off_speech()
 
-    elif answer == "turn off recog":
-        return turn_off_speech_recog()
 
-    elif answer == 'turn on recog':
-        return turn_on_speech_recog()
 
 
     elif answer == "close browser":
