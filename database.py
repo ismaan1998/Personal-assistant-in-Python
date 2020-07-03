@@ -88,7 +88,18 @@ def turn_on_speech():
     else:
         return ("Hey please turn on internet first. ")
 
+def turn_on_speech_recog():
+    if (check_internet_connection):
 
+        con = create_connection()
+        cur = con.cursor()
+        query = "update memory set value = 'on' where name = 'speech_recog'"
+        cur.execute(query)
+        con.commit()
+
+        return ("Ok i will listen now")
+    else:
+        return ("Hey please turn on internet first. ")
 
 def turn_off_speech():
     con = create_connection()
@@ -99,11 +110,32 @@ def turn_off_speech():
     return("Ok i won't  speak")
 
 
+def turn_off_speech_recog():
+    con = create_connection()
+    cur = con.cursor()
+    query = "update memory set value = 'off' where name = 'speech_recog'"
+    cur.execute(query)
+    con.commit()
+    return("Ok i won't  listen")
+
 def speak_is_on():
     con = create_connection()
     cur = con.cursor()
 
     query = "select value from memory where name = 'speech'"
+    cur.execute(query)
+    ans = str(cur.fetchall()[0][0])
+
+    if ans == "on":
+        return True 
+    else:
+        return False
+
+def speech_recog_is_on():
+    con = create_connection()
+    cur = con.cursor()
+
+    query = "select value from memory where name = 'speech_recog'"
     cur.execute(query)
     ans = str(cur.fetchall()[0][0])
 

@@ -5,10 +5,17 @@ from database import *
 from internet import check_internet_connection, check_on_wikipedia
 import assistant_details
 from web_jobs import open_facebook, open_google, close_browser
+from music import play_music, pause_music, stop_music, next_song, previous_song, play_specific_song
+from display import change_wallpaper
+from news_module import get_news
 
 def process(query):
 
-    answer = get_answer_from_memory(query)
+    if 'play' in query and 'music' not in query:
+        answer = get_answer_from_memory('play')
+    else:
+        answer = get_answer_from_memory(query)
+
 
     if answer == "get time details":
         return ("Time is " + get_time())
@@ -25,8 +32,16 @@ def process(query):
     elif answer == "on speak":
         return turn_on_speech()
     
+   
     elif answer == "off speak":
         return turn_off_speech()
+
+    elif answer == "turn off recog":
+        return turn_off_speech_recog()
+
+    elif answer == 'turn on recog':
+        return turn_on_speech_recog()
+
 
     elif answer == "close browser":
         close_browser()
@@ -40,7 +55,32 @@ def process(query):
     elif answer == "open google":
         open_google()
         return "opening google"
+
+    elif answer == "play music":
+        return play_music()
+
+    elif answer == 'play':
+        return play_specific_song(query)
+
         
+    elif answer == "pause music":
+        return pause_music() 
+
+    elif answer == "stop music":
+        return stop_music() 
+    
+    elif answer == "next song":
+        return next_song()
+
+    elif answer == "previous song":
+        return previous_song()
+
+    elif answer == 'change wallpaper':
+        return change_wallpaper()
+
+    elif answer == 'get news':
+        return get_news()
+
     elif answer == 'change name':
         output("Okay! what do you want to call me")
         temp = take_input()
