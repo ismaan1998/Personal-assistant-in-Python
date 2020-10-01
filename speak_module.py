@@ -1,9 +1,10 @@
-from gtts import gTTS
-from playsound import playsound
+import pyttsx3
 
-def speak(text):
-    tts = gTTS(text)
-    tts.save('speech.mp3')
-    playsound('speech.mp3')
+def speak (usertext):
+    engine = pyttsx3.init()
+    engine.say(usertext)
+    engine.runAndWait()
+
+
 
 
